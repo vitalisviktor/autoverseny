@@ -104,7 +104,10 @@ namespace autoverseny
 
             if (Canvas.GetLeft(btn) >= celvonal)
             {
+                timer.Stop();
                 MessageBox.Show($"A(z) {btn.Content} célba ért {celbaert.Count + 1}. helyezetben", "Nyertes");
+                timer.Start();
+
                 celbaert.Add(btn);
                 btn.Click -= btn_kocsi_Click;
 
