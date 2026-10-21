@@ -60,7 +60,6 @@ namespace autoverseny
             double sebesseg = rnd.Next(1,6);
             double ujpozicio = pozicio + sebesseg;
             Canvas.SetLeft(btn, ujpozicio);
-            }
             if (Canvas.GetLeft(btn) >= celvonal)
             {
                 MessageBox.Show($"A(z) {btn.Content} célba ért {celbaert.Count + 1}. helyezetben", "Nyertes");
@@ -74,6 +73,7 @@ namespace autoverseny
                     }
 
                 }
+            }
             
         }
 
@@ -99,10 +99,22 @@ namespace autoverseny
 
         private void btn_kocsi_Click(object sender, RoutedEventArgs e)
         {
-            Button clicked = (Button)sender;
-            Canvas.SetLeft(clicked, Canvas.GetLeft(clicked) + rnd.Next(18,26));
-  
+            Button btn = (Button)sender;
+            Canvas.SetLeft(btn, Canvas.GetLeft(btn) + rnd.Next(18,26));
 
+            if (Canvas.GetLeft(btn) >= celvonal)
+            {
+                MessageBox.Show($"A(z) {btn.Content} célba ért {celbaert.Count + 1}. helyezetben", "Nyertes");
+                celbaert.Add(btn);
+                btn.Click -= btn_kocsi_Click;
+
+                if (celbaert.Count == 3)
+                {
+                    MessageBox.Show("Verseny vége", "Vége");
+                    timer.Stop();
+                }
+
+            }
         }
     }
 }
