@@ -57,7 +57,7 @@ namespace autoverseny
             {
 
             double pozicio = Canvas.GetLeft(btn);
-            double sebesseg = rnd.Next(1,6);
+            double sebesseg = rnd.Next(0,7);
             double ujpozicio = pozicio + sebesseg;
             Canvas.SetLeft(btn, ujpozicio);
             if (Canvas.GetLeft(btn) >= celvonal)
@@ -81,7 +81,11 @@ namespace autoverseny
 
         private void btn_start_Click(object sender, RoutedEventArgs e)
         {
+            if (lbx_valasztas.SelectedItem != null)
+            {
             select = lbx_valasztas.SelectedItem.ToString();
+
+            }
 
             celbaert.Clear();
 
